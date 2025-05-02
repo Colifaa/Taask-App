@@ -12,7 +12,7 @@ interface AuthRequest extends Request {
 // Obtener todas las tareas
 export const getTasks = async (req: AuthRequest, res: Response, next: NextFunction): Promise<void> => {
   try {
-    console.log('👉 Obteniendo tareas del usuario:', req.user?.id);
+
     const tasks = await Task.find({ userId: req.user?.id }).sort({ createdAt: -1 });
     res.status(200).json({
       success: true,
@@ -27,9 +27,7 @@ export const getTasks = async (req: AuthRequest, res: Response, next: NextFuncti
 // Crear una nueva tarea
 export const createTask = async (req: AuthRequest, res: Response, next: NextFunction): Promise<void> => {
   try {
-    console.log('👉 Creando nueva tarea');
-    console.log('Body recibido:', req.body);
-    console.log('Usuario:', req.user?.id);
+ 
 
     const { title, description, completed } = req.body;
 
@@ -74,7 +72,7 @@ export const createTask = async (req: AuthRequest, res: Response, next: NextFunc
     // Guardar en la base de datos
     await task.save();
 
-    console.log('✅ Tarea creada:', task);
+   
     res.status(201).json({
       success: true,
       data: task
@@ -90,8 +88,7 @@ export const updateTask = async (req: AuthRequest, res: Response, next: NextFunc
     const { id } = req.params;
     const { title, description, completed } = req.body;
 
-    console.log('👉 Actualizando tarea:', id);
-    console.log('Datos a actualizar:', { title, description, completed });
+   
 
     // Validar ID
     if (!mongoose.Types.ObjectId.isValid(id)) {
@@ -134,7 +131,7 @@ export const updateTask = async (req: AuthRequest, res: Response, next: NextFunc
       return;
     }
 
-    console.log('✅ Tarea actualizada:', task);
+  
     res.status(200).json({
       success: true,
       data: task
@@ -149,7 +146,7 @@ export const deleteTask = async (req: AuthRequest, res: Response, next: NextFunc
   try {
     const { id } = req.params;
 
-    console.log('👉 Eliminando tarea:', id);
+ 
 
     // Validar ID
     if (!mongoose.Types.ObjectId.isValid(id)) {
@@ -171,7 +168,7 @@ export const deleteTask = async (req: AuthRequest, res: Response, next: NextFunc
       return;
     }
 
-    console.log('✅ Tarea eliminada:', task);
+   
     res.status(200).json({
       success: true,
       data: task

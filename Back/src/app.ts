@@ -12,12 +12,12 @@ import path from 'path';
 
 dotenv.config({ path: path.resolve(__dirname, '../.env') });
 
-console.log('🚀 Iniciando configuración del servidor...');
+
 
 const app = express();
 
 // Middlewares de seguridad
-console.log('⚙️ Configurando middlewares de seguridad...');
+
 app.use(helmet());
 
 // Configuración manual de CORS
@@ -37,23 +37,20 @@ app.use((req, res, next) => {
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-console.log('✅ Middlewares de seguridad configurados');
+
 
 // Rate limiting
-console.log('⚙️ Configurando rate limiting...');
+
 app.use(apiLimiter);
-console.log('✅ Rate limiting configurado');
+
 
 // Logging middleware
 app.use((req, res, next) => {
-  console.log('\n=================================');
-  console.log(`📨 Nueva petición recibida`);
-  console.log(`📍 ${req.method} ${req.path}`);
-  console.log('📦 Headers:', req.headers);
+
   if (Object.keys(req.body).length > 0) {
-    console.log('📦 Body:', req.body);
+  
   }
-  console.log('=================================\n');
+
   next();
 });
 
@@ -67,10 +64,10 @@ app.get('/status', (req, res) => {
 });
 
 // Rutas de la API
-console.log('🛣️ Configurando rutas de la API...');
+
 app.use('/api/auth', authRoutes);
 app.use('/api/tasks', taskRoutes);
-console.log('✅ Rutas configuradas correctamente');
+
 
 // Ruta raíz
 app.get('/', (req, res) => {
@@ -84,13 +81,13 @@ app.get('/', (req, res) => {
 });
 
 // Manejo de errores
-console.log('⚙️ Configurando manejo de errores...');
+
 app.use(notFoundHandler);
 app.use(errorHandler);
-console.log('✅ Manejo de errores configurado');
+
 
 // Conexión a MongoDB
-console.log('Intentando conectar a MongoDB con URI:', config.mongo.uri);
+
 mongoose.connect(config.mongo.uri, {
   serverSelectionTimeoutMS: 5000,
   socketTimeoutMS: 45000,
@@ -102,7 +99,7 @@ mongoose.connect(config.mongo.uri, {
     process.exit(1);
   });
 
-console.log('✨ Configuración del servidor completada');
+
 
 // Iniciar servidor
 const PORT = config.port;
