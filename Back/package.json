@@ -3,10 +3,9 @@
   "version": "1.0.0",
   "description": "Backend para la aplicación de tareas",
   "main": "dist/index.js",
-  "type": "module",
   "scripts": {
     "start": "node dist/index.js",
-    "dev": "nodemon --esm src/index.ts",
+    "dev": "nodemon src/index.ts",
     "build": "tsc",
     "test": "jest"
   },
