@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import { Card, CardContent } from './ui/card';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
-import { Textarea } from '@/components/ui/textarea';
+import { Textarea } from '../components/ui/textarea';
 import { Plus, X } from 'lucide-react';
 import { Alert, AlertDescription, AlertTitle } from './ui/alert';
 import { CheckCircle, AlertCircle } from 'lucide-react';

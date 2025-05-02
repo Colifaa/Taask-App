@@ -1,6 +1,6 @@
 "use client";
 
-import { Toaster } from '@/components/ui/sonner';
+import { Toaster } from '../components/ui/sonner';
 import { TaskList } from '../components/TaskList';
 
 
