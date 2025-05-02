@@ -50,7 +50,7 @@ Una aplicación moderna de gestión de tareas construida con Next.js y Node.js, 
 
 1. **Clonar el repositorio**
 ```bash
-git clone https://github.com/tu-usuario/taask-app.git
+git clone https://github.com/Colifaa/Taask-App
 cd taask-app
 ```
 
