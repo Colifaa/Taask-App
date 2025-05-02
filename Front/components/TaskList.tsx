@@ -1,48 +1,47 @@
-import { useTasks } from '../hooks/useTasks';
-import { Checkbox } from './ui/checkbox';
-import { Button } from './ui/button';
-import { Trash2 } from 'lucide-react';
+"use client"
+
+import { useTasks } from '@/hooks/useTasks';
+import { AddTask } from './AddTask';
+import { TaskCard } from './TaskCard';
 
 export const TaskList = () => {
-  const { tasks, loading, error, toggleTask, deleteTask } = useTasks();
+  const { tasks, createTask, updateTask, deleteTask } = useTasks();
 
-  if (loading) {
-    return <div className="text-center py-4">Cargando tareas...</div>;
-  }
+  const handleAddTask = async (title: string, description: string) => {
+    await createTask(title, description);
+  };
 
-  if (error) {
-    return <div className="text-red-500 text-center py-4">{error}</div>;
-  }
+  const handleUpdateTask = async (id: string, updates: any) => {
+    await updateTask(id, updates);
+  };
 
-  if (tasks.length === 0) {
-    return <div className="text-center py-4">No hay tareas. ¡Agrega una nueva!</div>;
-  }
+  const handleDeleteTask = async (id: string) => {
+    await deleteTask(id);
+  };
 
   return (
-    <div className="space-y-2">
-      {tasks.map(task => (
-        <div
-          key={task._id}
-          className="flex items-center justify-between p-4 bg-white rounded-lg shadow"
-        >
-          <div className="flex items-center space-x-2">
-            <Checkbox
-              checked={task.completed}
-              onCheckedChange={(checked) => toggleTask(task._id, checked as boolean)}
+    <div className="container mx-auto px-4 py-8">
+      <div className="max-w-2xl mx-auto">
+        <h1 className="text-3xl font-bold mb-8 text-gray-900">Mis Tareas</h1>
+        <AddTask onAdd={handleAddTask} />
+        <div className="space-y-4">
+          {tasks.map((task) => (
+            <TaskCard
+              key={task._id}
+              task={task}
+              onUpdate={handleUpdateTask}
+              onDelete={handleDeleteTask}
             />
-            <span className={task.completed ? 'line-through text-gray-500' : ''}>
-              {task.title}
-            </span>
-          </div>
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={() => deleteTask(task._id)}
-          >
-            <Trash2 className="h-4 w-4 text-red-500" />
-          </Button>
+          ))}
+          {tasks.length === 0 && (
+            <div className="text-center py-8">
+              <p className="text-gray-500 text-lg">
+                No hay tareas pendientes. ¡Agrega una nueva tarea!
+              </p>
+            </div>
+          )}
         </div>
-      ))}
+      </div>
     </div>
   );
 }; 
