@@ -92,6 +92,8 @@ JWT_SECRET=your_jwt_secret_key
 API_CLIENT_ID=your_client_id
 # Secreto del cliente para autenticación (opcional)
 API_CLIENT_SECRET=your_client_secret
+# URL del frontend para CORS (requerido para habilitar peticiones desde el frontend)
+FRONTEND_URL= deploy url
 ```
 
 > **Nota**: Las variables marcadas como "requerido" son necesarias para el funcionamiento de la aplicación. Las variables marcadas como "opcional" tienen valores por defecto, pero puedes personalizarlas según tus necesidades.
