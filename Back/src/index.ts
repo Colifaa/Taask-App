@@ -1,6 +1,6 @@
 import app from './app';
-import { env } from './config/env';
-import connectDB from './config/db';
+import mongoose from 'mongoose';
+import { config } from './config/config';
 
 const MAX_RETRIES = 5;
 const BASE_PORT = 3001;
@@ -13,7 +13,7 @@ const startServer = async (retryCount = 0) => {
     
     // Conectar a MongoDB
     console.log('📡 Conectando a MongoDB...');
-    await connectDB();
+    await mongoose.connect(config.mongo.uri);
     console.log('✅ Conexión a MongoDB establecida');
 
     // Iniciar el servidor HTTP
