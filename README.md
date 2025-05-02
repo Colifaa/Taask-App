@@ -145,13 +145,10 @@ npm run dev
 4. Push a la rama (`git push origin feature/AmazingFeature`)
 5. Abrir un Pull Request
 
-## 📄 Licencia
-
-Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE.md](LICENSE.md) para más detalles.
 
 ## 👥 Autores
 
-- **Tu Nombre** - *Desarrollo Full Stack* - [Tu GitHub](https://github.com/tu-usuario)
+- **Jorge** - *Desarrollo Full Stack* - [Tu GitHub](https://github.com/Colifaa)
 
 ## 🙏 Agradecimientos
 
@@ -160,4 +157,4 @@ Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE.md](LICENSE.m
 - Todos los contribuidores que han ayudado a mejorar este proyecto
 
 ---
-⌨️ con ❤️ por [Tu Nombre](https://github.com/tu-usuario)
+⌨️ con ❤️ por [Jorge](https://github.com/Colifaa)
