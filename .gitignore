@@ -59,6 +59,6 @@ Thumbs.db
 /Back/.env
 
 # Frontend
-/Front/components/ui/
+
 /Front/node_modules/
 /Front/.next/ 
