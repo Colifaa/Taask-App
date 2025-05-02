@@ -70,15 +70,33 @@ npm install
 
 Frontend (.env.local):
 ```env
+# URL del backend
 NEXT_PUBLIC_API_URL=http://localhost:3002/api
+# ID del cliente para autenticación (opcional)
+NEXT_PUBLIC_API_CLIENT_ID=taask-app-f3d1c8a6b9e4
+# Secreto del cliente para autenticación (opcional)
+NEXT_PUBLIC_API_CLIENT_SECRET=s3cr3t-k3y-7d9e2f5a8c4b
 ```
 
 Backend (.env):
 ```env
-PORT=3002
-MONGODB_URI=tu_uri_de_mongodb
-JWT_SECRET=tu_secreto_jwt
+# URI de conexión a MongoDB (requerido)
+MONGO_URI=mongodb+srv://jorgemathez14:FuRp52sb2EBCUZda@cluster0.uuofcch.mongodb.net/AppTask?retryWrites=true&w=majority
+# Puerto del servidor (opcional, por defecto 3002)
+PORT=3001
+# Entorno de ejecución (opcional)
+NODE_ENV=development
+# Secreto para generar tokens JWT (requerido)
+JWT_SECRET=f7d4e9b3c2a1e8d5b6f9c2e5a8d4b7f0
+# ID del cliente para autenticación (opcional)
+API_CLIENT_ID=taask-app-f3d1c8a6b9e4
+# Secreto del cliente para autenticación (opcional)
+API_CLIENT_SECRET=s3cr3t-k3y-7d9e2f5a8c4b
 ```
+
+> **Nota**: Las variables marcadas como "requerido" son necesarias para el funcionamiento de la aplicación. Las variables marcadas como "opcional" tienen valores por defecto, pero puedes personalizarlas según tus necesidades.
+
+> **⚠️ Importante**: Los valores mostrados son ejemplos. Por seguridad, debes usar tus propias credenciales y tokens cuando despliegues la aplicación.
 
 5. **Iniciar la aplicación**
 
