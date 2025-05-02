@@ -37,4 +37,9 @@ yarn-error.log*
 # Backend
 /Back/node_modules/
 /Back/dist/
-/Back/.env 
+/Back/.env
+
+# Frontend
+/Front/components/ui/
+/Front/node_modules/
+/Front/.next/ 
