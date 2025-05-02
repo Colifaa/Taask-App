@@ -1,5 +1,5 @@
 // src/controllers/tasks.ts
-import { Request, Response } from 'express';
+import { Request, Response, NextFunction } from 'express';
 import Task from '../models/Task';
 import mongoose from 'mongoose';
 
@@ -10,7 +10,7 @@ interface AuthRequest extends Request {
 }
 
 // Obtener todas las tareas
-export const getTasks = async (req: AuthRequest, res: Response): Promise<void> => {
+export const getTasks = async (req: AuthRequest, res: Response, next: NextFunction): Promise<void> => {
   try {
     console.log('👉 Obteniendo tareas del usuario:', req.user?.id);
     const tasks = await Task.find({ userId: req.user?.id }).sort({ createdAt: -1 });
@@ -20,17 +20,12 @@ export const getTasks = async (req: AuthRequest, res: Response): Promise<void> =
       data: tasks
     });
   } catch (error) {
-    console.error('❌ Error al obtener tareas:', error);
-    res.status(500).json({
-      success: false,
-      error: 'Error al obtener las tareas',
-      message: error instanceof Error ? error.message : 'Error desconocido'
-    });
+    next(error);
   }
 };
 
 // Crear una nueva tarea
-export const createTask = async (req: AuthRequest, res: Response): Promise<void> => {
+export const createTask = async (req: AuthRequest, res: Response, next: NextFunction): Promise<void> => {
   try {
     console.log('👉 Creando nueva tarea');
     console.log('Body recibido:', req.body);
@@ -85,26 +80,12 @@ export const createTask = async (req: AuthRequest, res: Response): Promise<void>
       data: task
     });
   } catch (error) {
-    console.error('❌ Error al crear tarea:', error);
-    
-    if (error instanceof mongoose.Error.ValidationError) {
-      res.status(400).json({
-        success: false,
-        error: 'Error de validación',
-        details: error.errors
-      });
-    } else {
-      res.status(500).json({
-        success: false,
-        error: 'Error al crear la tarea',
-        message: error instanceof Error ? error.message : 'Error desconocido'
-      });
-    }
+    next(error);
   }
 };
 
 // Actualizar una tarea
-export const updateTask = async (req: AuthRequest, res: Response): Promise<void> => {
+export const updateTask = async (req: AuthRequest, res: Response, next: NextFunction): Promise<void> => {
   try {
     const { id } = req.params;
     const { title, description, completed } = req.body;
@@ -159,26 +140,12 @@ export const updateTask = async (req: AuthRequest, res: Response): Promise<void>
       data: task
     });
   } catch (error) {
-    console.error('❌ Error al actualizar tarea:', error);
-    
-    if (error instanceof mongoose.Error.ValidationError) {
-      res.status(400).json({
-        success: false,
-        error: 'Error de validación',
-        details: error.errors
-      });
-    } else {
-      res.status(500).json({
-        success: false,
-        error: 'Error al actualizar la tarea',
-        message: error instanceof Error ? error.message : 'Error desconocido'
-      });
-    }
+    next(error);
   }
 };
 
 // Eliminar una tarea
-export const deleteTask = async (req: AuthRequest, res: Response): Promise<void> => {
+export const deleteTask = async (req: AuthRequest, res: Response, next: NextFunction): Promise<void> => {
   try {
     const { id } = req.params;
 
@@ -210,11 +177,6 @@ export const deleteTask = async (req: AuthRequest, res: Response): Promise<void>
       data: task
     });
   } catch (error) {
-    console.error('❌ Error al eliminar tarea:', error);
-    res.status(500).json({
-      success: false,
-      error: 'Error al eliminar la tarea',
-      message: error instanceof Error ? error.message : 'Error desconocido'
-    });
+    next(error);
   }
 };

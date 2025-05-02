@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import { Card, CardContent } from './ui/card';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
-import { Textarea } from './ui/textarea';
+import { Textarea } from '@/components/ui/textarea';
 import { Plus, X } from 'lucide-react';
 import { Alert, AlertDescription, AlertTitle } from './ui/alert';
 import { CheckCircle, AlertCircle } from 'lucide-react';
@@ -85,7 +85,7 @@ export const AddTask = ({ onAdd }: AddTaskProps) => {
             <Textarea
               placeholder="Descripción de la tarea..."
               value={description}
-              onChange={(e) => setDescription(e.target.value)}
+              onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setDescription(e.target.value)}
               className="min-h-[100px]"
             />
             <div className="flex justify-end gap-2">

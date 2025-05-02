@@ -19,20 +19,20 @@ router.use((req, res, next) => {
 });
 
 // Todas las rutas requieren autenticación y validación de cliente
-router.use(authenticateToken);
-router.use(validateApiClient);
+router.use(authenticateToken as any);
+router.use(validateApiClient as any);
 
 // Obtener todas las tareas
-router.get('/', getTasks);
+router.get('/', getTasks as any);
 
 // Crear una nueva tarea
-router.post('/', createTask);
+router.post('/', createTask as any);
 
 // Actualizar una tarea
-router.put('/:id', updateTask);
+router.put('/:id', updateTask as any);
 
 // Eliminar una tarea
-router.delete('/:id', deleteTask);
+router.delete('/:id', deleteTask as any);
 
 console.log('✅ Router de tareas configurado correctamente');
 console.log('📝 Rutas disponibles:');

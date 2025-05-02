@@ -6,7 +6,7 @@ interface AuthRequest extends Request {
   user?: any;
 }
 
-export const authenticateToken = (req: AuthRequest, res: Response, next: NextFunction) => {
+export const authenticateToken = (req: AuthRequest, res: Response, next: NextFunction): void => {
   const authHeader = req.headers['authorization'];
   console.log('🔍 Verificando autenticación...');
   console.log('Headers recibidos:', req.headers);
@@ -17,10 +17,11 @@ export const authenticateToken = (req: AuthRequest, res: Response, next: NextFun
 
   if (!token) {
     console.log('❌ No se proporcionó token');
-    return res.status(401).json({
+    res.status(401).json({
       success: false,
       error: 'Token de autenticación no proporcionado'
     });
+    return;
   }
 
   try {
@@ -36,7 +37,7 @@ export const authenticateToken = (req: AuthRequest, res: Response, next: NextFun
       message: error.message,
       stack: error.stack
     });
-    return res.status(403).json({
+    res.status(403).json({
       success: false,
       error: 'Token inválido o expirado',
       details: error.message
@@ -44,7 +45,7 @@ export const authenticateToken = (req: AuthRequest, res: Response, next: NextFun
   }
 };
 
-export const validateApiClient = (req: Request, res: Response, next: NextFunction) => {
+export const validateApiClient = (req: Request, res: Response, next: NextFunction): void => {
   const clientId = req.headers['x-client-id'];
   const clientSecret = req.headers['x-client-secret'];
 
@@ -55,18 +56,20 @@ export const validateApiClient = (req: Request, res: Response, next: NextFunctio
 
   if (!clientId || !clientSecret) {
     console.log('Faltan credenciales de cliente');
-    return res.status(401).json({
+    res.status(401).json({
       success: false,
       error: 'Credenciales de cliente no proporcionadas'
     });
+    return;
   }
 
   if (clientId !== config.api.clientId || clientSecret !== config.api.clientSecret) {
     console.log('Credenciales de cliente inválidas');
-    return res.status(401).json({
+    res.status(401).json({
       success: false,
       error: 'Credenciales de cliente inválidas'
     });
+    return;
   }
 
   console.log('Validación de cliente exitosa');
