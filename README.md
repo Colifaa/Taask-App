@@ -73,9 +73,9 @@ Frontend (.env.local):
 # URL del backend
 NEXT_PUBLIC_API_URL=http://localhost:3002/api
 # ID del cliente para autenticación (opcional)
-NEXT_PUBLIC_API_CLIENT_ID=taask-app-f3d1c8a6b9e4
+NEXT_PUBLIC_API_CLIENT_ID=your_frontend_client_id
 # Secreto del cliente para autenticación (opcional)
-NEXT_PUBLIC_API_CLIENT_SECRET=s3cr3t-k3y-7d9e2f5a8c4b
+NEXT_PUBLIC_API_CLIENT_SECRET=your_frontend_client_secret
 ```
 
 Backend (.env):
