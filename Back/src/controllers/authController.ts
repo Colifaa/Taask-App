@@ -31,7 +31,7 @@ export const register = async (req: Request, res: Response) => {
     const token = jwt.sign(
       { id: user._id },
       config.jwt.secret,
-      { expiresIn: '24h' }
+      { expiresIn: '24h' } // 365d dura todo el año
     );
 
     res.status(201).json({
